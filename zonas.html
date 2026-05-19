@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Magiya Dice - Zonas y Enemigos</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="portada-dados"> 
+    
+    <div id="background-mapa-overlay"></div>
+
+    <header>
+        <h1>MAGIYA DICE</h1>
+        <p>ZONAS Y ENEMIGOS DEL MAPA</p>
+        <h6>(Posicioná el mouse para ver el lugar)</h6>
+    </header>
+
+    <nav>
+        <a href="index.html">Introducción</a>
+        <a href="historia.html">Historia</a>
+        <a href="aliadas.html">Aliadas Y Roles</a>
+        <a href="sistema.html">Sistema de Combate</a>
+        <a href="zonas.html" class="active">Zonas y Enemigos</a>
+    </nav>
+
+    <div class="container-zonas-mapa">
+        
+        <aside class="panel-enemigo-lateral" id="panel-enemigo-izq">
+            <img id="img-enemigo-izq" src="" alt="Enemigo Izquierdo">
+        </aside>
+
+        <main class="pergamino-box">
+            <h2>ZONAS Y ENEMIGOS</h2>
+            
+            <div class="zone-block hover-zona" 
+                 data-fondo="bosque_de_pholoe.jpg" 
+                 data-ene-izq="kobaloi.jpg" 
+                 data-ene-der="centauro.jpg">
+                <h3>BOSQUE DE PHOLOE</h3>
+                <p>Una densa arboleda forestal perpetuamente encapotada por una densa neblina sobrenatural.</p>
+                <div class="enemies-list">Enemigos: Kobaloi, Centauros y Ninfas.</div>
+            </div>
+
+            <div class="zone-block hover-zona" 
+                 data-fondo="fortaleza_de_ashfield.jpg" 
+                 data-ene-izq="caballero_casco.jpg" 
+                 data-ene-der="sabuesos.jpg">
+                <h3>FORTALEZA DE ASHFIELD</h3>
+                <p>Principal bastión de las Autoridades Coloniales. Lugar donde cientos de mujeres fueron ejecutadas por sospecha de brujería. Aquí se encuentran enemigos tales como:</p>
+                <div class="enemies-list">Caballeros, Clérigos y Sabuesos.</div>
+            </div>
+
+            <div class="zone-block hover-zona" 
+                 data-fondo="monasterio_abandonado.jpg" 
+                 data-ene-izq="encapuchados.jpg" 
+                 data-ene-der="brujas.jpg">
+                <h3>MONASTERIO ABANDONADO</h3>
+                <p>Santuario oculto de los Encapuchados. Sus pasillos están cubiertos de símbolos grabados con sangre y pergaminos.</p>
+                <div class="enemies-list">Enemigos: Encapuchados, Brujas y Daimones.</div>
+            </div>
+
+            <div class="zone-block">
+                <h3>APOSENTOS DE LAS DIOSAS</h3>
+                
+                <ul>
+                    <li class="hover-zona" data-fondo="lago_selenico.jpg">
+                        <strong>LAGO SELÉNICO:</strong> Un lago iluminado por reflejos plateados. Aquí descansan los secretos vinculados a Selene.
+                    </li>
+                    <li class="hover-zona" data-fondo="monte_de_artemisa.jpg">
+                        <strong>MONTE DE ARTEMISA:</strong> Un antiguo campo de batalla. Aquí descansan los secretos vinculados a Artemisa.
+                    </li>
+                    <li class="hover-zona" data-fondo="portal_de_persefone.jpg">
+                        <strong>PORTAL DE PERSÉFONE:</strong> Entrada al Inframundo. Aquí descansan los secretos vinculados a Perséfone.
+                    </li>
+                </ul>
+            </div>
+        </main>
+
+        <aside class="panel-enemigo-lateral" id="panel-enemigo-der">
+            <img id="img-enemigo-der" src="" alt="Enemigo Derecho">
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>Magiya Dice &copy; 2026 — Ficción inspirada en la persecución de brujas y la mitología griega.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const zones = document.querySelectorAll('.hover-zona');
+            const bgOverlay = document.getElementById('background-mapa-overlay');
+            
+            const panelIzq = document.getElementById('panel-enemigo-izq');
+            const imgIzq = document.getElementById('img-enemigo-izq');
+            
+            const panelDer = document.getElementById('panel-enemigo-der');
+            const imgDer = document.getElementById('img-enemigo-der');
+
+            zones.forEach(zone => {
+                zone.addEventListener('mouseenter', function() {
+                    const fondoSrc = this.getAttribute('data-fondo');
+                    const eneIzqSrc = this.getAttribute('data-ene-izq');
+                    const eneDerSrc = this.getAttribute('data-ene-der');
+
+                    // 1. CAMBIAR EL FONDO
+                    if (fondoSrc) {
+                        // encodeURI ayuda si tenés espacios en los nombres de archivo
+                        bgOverlay.style.backgroundImage = `url('${encodeURI(fondoSrc)}')`;
+                        bgOverlay.style.opacity = '1';
+                    }
+
+                    // 2. CAMBIAR ENEMIGOS
+                    if (eneIzqSrc) {
+                        imgIzq.src = encodeURI(eneIzqSrc);
+                        panelIzq.style.opacity = '1';
+                    } else {
+                        panelIzq.style.opacity = '0';
+                    }
+
+                    if (eneDerSrc) {
+                        imgDer.src = encodeURI(eneDerSrc);
+                        panelDer.style.opacity = '1';
+                    } else {
+                        panelDer.style.opacity = '0';
+                    }
+                });
+
+                zone.addEventListener('mouseleave', function() {
+                    bgOverlay.style.opacity = '0';
+                    panelIzq.style.opacity = '0';
+                    panelDer.style.opacity = '0';
+
+                    setTimeout(() => {
+                        if (panelIzq.style.opacity === '0') imgIzq.src = '';
+                        if (panelDer.style.opacity === '0') imgDer.src = '';
+                    }, 400); 
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

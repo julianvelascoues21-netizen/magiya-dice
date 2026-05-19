@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Magiya Dice - Aliadas y Roles</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="fondo-aliadas">
+
+    <header>
+        <h1>MAGIYA DICE</h1>
+        <p>ALIADAS Y ROLES: EL AQUELARRE DE HÉCATE</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Introducción</a>
+        <a href="historia.html">Historia</a>
+        <a href="aliadas.html" class="active">Aliadas y Roles</a>
+        <a href="sistema.html">Sistema de Combate</a>
+        <a href="zonas.html">Zonas y Enemigos</a>
+    </nav>
+
+    <div class="container-lectura">
+        <main class="pergamino-box">
+            <h2>ROLES DEL AQUELARRE</h2>
+            
+            <h3>ARCO Y ARCANO</h3>
+            <p>Cada personaje tiene comandos propios con sus respectivos dados. A su vez, el campo de batalla se define en dos filas: <strong>retaguardia y vanguardia</strong>. Las heroínas que están en vanguardia tomarán los ataques enemigos. Una vez caídas estas, los enemigos podrán atacar a la retaguardia (aunque hay ciertos enemigos con ataques de largo alcance que pueden herir a la última fila sin haber derrotado a la primera).</p>
+            <p>Cuando la <strong>barra de ACCIÓN</strong> se llene, el personaje puede realizar un COMANDO. Este puede ser atacar, defenderse o usar una habilidad de su rol.</p>
+
+            <hr style="border: 1px solid var(--color-borde-negro); margin: 30px 0;">
+
+            <div class="bloque-parrafo">
+                <div class="texto-parrafo">
+                    <h3>CATHERINE / GUARDIANA</h3>
+                    <ul>
+                        <li><strong>Atacar:</strong> Tu línea de ataque física principal. Realiza un ataque con arco, este puede apuntar a las líneas traseras o delanteras pero solo a un objetivo. Su daño se basa en la AGI del personaje. Se lanza un dado de 6 caras con el nivel 1 y este va ganado una cara a medida que suba de nivel (Máximo 25 caras).</li>
+                        <li><strong>Defender:</strong> Tomas postura defensiva y el siguiente ataque que recibas va a aplicar una resistencia/entereza con bono del 30%. <em>Ejemplo:</em> Si un personaje tiene 10 de RES y recibe un Ataque de 500, antes del cálculo al estar en modo DEFENDER gana 3 puntos de RES y luego se aplica el daño final. Esto evita que la bruja reciba los 50 puntos de daño originales, recibiendo en su lugar solo 38. La postura dura hasta recibir un ataque o hasta llenar la barra de acción de nuevo.</li>
+                        <li><strong>Huir:</strong> Se arroja un dado de 6 caras. Si el resultado es 1 o 2, no se huye del combate. De lo contrario, la huida es exitosa para todo el grupo.</li>
+                    </ul>
+                </div>
+                <div class="img-parrafo">
+                    <img src="Catherine.jpg" alt="Catherine Guardiana">
+                </div>
+            </div>
+
+            <div class="bloque-parrafo invertido">
+                <div class="texto-parrafo">
+                    <h3>SELENA / BRUJA BLANCA</h3>
+                    <ul>
+                        <li><strong>Cura:</strong> Hechizo de sanación que restablece HP propios o de aliadas. Se lanza un dado de 4 caras (aumento de caras con el nivel, máximo 20) y su resultado más la suma del atributo base WIS define la cantidad de HP restaurados.</li>
+                        <li><strong>Revitalia:</strong> Cura estados alterados y despierta a una aliada del DESMAYO. Siempre es un dado de 6 caras. El resultado del dado permite la cura de distintos estados:
+                            <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+                                <li style="margin-bottom: 6px;">▶ 1 <strong>Veneno:</strong> Quita vida por turno = LCK del enemigo / (20% de la ENT) de la bruja afectada.</li>
+                                <li style="margin-bottom: 6px;">▶ 2 <strong>Confusión:</strong> El personaje elige comando y objetivo al azar.</li>
+                                <li style="margin-bottom: 6px;">▶ 3 <strong>Parálisis:</strong> Reduce la agilidad (velocidad de turno) a la mitad.</li>
+                                <li style="margin-bottom: 6px;">▶ 4 <strong>Condena:</strong> Desmayo automático en 3 turnos.</li>
+                                <li style="margin-bottom: 6px;">▶ 5 <strong>Quemadura:</strong> Reduce a la mitad la Resistencia, Fuerza y Agilidad.</li>
+                                <li style="margin-bottom: 6px;">▶ 6 <strong>Milagro:</strong> Despierta a una aliada en DESMAYO con HP = WIS de la Bruja Blanca.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Defender:</strong> Postura defensiva que otorga un bono del 30% a la resistencia/entereza frente al próximo ataque.</li>
+                    </ul>
+                </div>
+                <div class="img-parrafo">
+                    <img src="Selena.jpg" alt="Selena Bruja Blanca">
+                </div>
+            </div>
+
+            <div class="bloque-parrafo">
+                <div class="texto-parrafo">
+                    <h3>LILI / BRUJA NEGRA</h3>
+                    <ul>
+                        <li><strong>Piromancia:</strong> Se lanza un dado de 4 caras (máximo 25), el resultado se suma a la WIS de la bruja para calcular el ataque mágico.</li>
+                        <li><strong>Telequinesis:</strong> Se lanza un dado de 5 caras (máximo 30), el resultado se suma a la WIS de la bruja para calcular el ataque físico.</li>
+                        <li><strong>Defender:</strong> Postura defensiva que otorga un bono del 30% a la resistencia/entereza frente al próximo ataque.</li>
+                    </ul>
+                </div>
+                <div class="img-parrafo">
+                    <img src="Lili.jpg" alt="Lili Bruja Negra">
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>Magiya Dice &copy; 2026 — Ficción inspirada en la persecución de brujas y la mitología griega.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Magiya Dice - Sistema de Combate</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="fondo-sistema">
+
+    <header>
+        <h1>MAGIYA DICE</h1>
+        <p>SISTEMA DE COMBATE: ATRIBUTOS Y MECÁNICA</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Introducción</a>
+        <a href="historia.html">Historia</a>
+        <a href="aliadas.html">Aliadas Y Roles</a>
+        <a href="sistema.html" class="active">Sistema de Combate</a>
+        <a href="zonas.html">Zonas y Enemigos</a>
+    </nav>
+
+    <div class="container">
+        <main class="pergamino-box">
+            <h2>SISTEMA DE ATRIBUTOS</h2>
+            <p>Las fracciones se redondean siempre hacia abajo en todos los cálculos del sistema.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Acrónimo</th>
+                        <th>Descripción</th>
+                        <th>Efecto en Combate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fuerza</strong></td>
+                        <td>STR</td>
+                        <td>Mide el poder físico, la capacidad de infligir daño con ataques y armas cuerpo a cuerpo.</td>
+                        <td>Ataque = (Fuerza + Resultado del Dado).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agilidad</strong></td>
+                        <td>AGI</td>
+                        <td>Representa la velocidad de movimiento del personaje.</td>
+                        <td>Ataque del arco = (Agilidad + Resultado del Dado). Define el orden del primer turno en combate y la velocidad de carga de la barra de Acciones.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Resistencia</strong></td>
+                        <td>RES</td>
+                        <td>Define la resistencia física, la salud general. Si una heroína queda con 0 HP, queda en estado DESMAYO quedando fuera de combate. Si todo el grupo queda en este estado, es GAME OVER.</td>
+                        <td>Aumenta los Puntos de Vida (HP) máximos y la defensa frente a daños físicos. <br>Daño final = (Atributo base + Resultado del Dado / Resistencia).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entereza</strong></td>
+                        <td>ENT</td>
+                        <td>Define la defensa mágica y el daño de los estados alterados.</td>
+                        <td>Daño final = (Atributo base + Resultado del Dado / Entereza).<br>Daño de Veneno o Quemadura = LCK del enemigo / (20% de la ENT de la bruja).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sabiduría</strong></td>
+                        <td>WIS</td>
+                        <td>Incrementa el poder mágico y las curaciones.</td>
+                        <td>Ataque o Cura = (WIS + Resultado del Dado).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Suerte</strong></td>
+                        <td>LCK</td>
+                        <td>Define la activación del Eco y la resistencia a estados alterados.</td>
+                        <td>Aumenta la probabilidad de doble tirada y efectos AOE.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>EL ECO DE LA SUERTE</h3>
+            <p>Junto con la realización de un comando que requiere lanzamiento de dado, se realiza una tirada automática de un dado invisible en simultáneo. Solo se activa 1 vez por turno y no aplica para el comando HUIR. Los jefes enemigos también gozan del efecto Eco.</p>
+            
+            <h3>DADOS DE COMANDO</h3>
+            <p>El número de caras sube con el nivel (excepto Huir y Revitalia).</p>
+            <ul>
+                <li><strong>Guardiana:</strong> Atacar (1d6 inicial).</li>
+                <li><strong>B. Negra:</strong> Piromancia (1d4), Telequinesis (1d5).</li>
+                <li><strong>B. Blanca:</strong> Cura (1d4), Revitalia (siempre 1d6).</li>
+            </ul>
+
+            <h3>DADO OCULTO DE SUERTE</h3>
+            <p>Al usar un comando, se lanza un dado oculto con tantas caras como el atributo LCK del personaje.</p>
+
+            <h3>LA REGLA DEL ECO</h3>
+            <p>Si el resultado del Dado Oculto es mayor al resultado del Dado de Comando, se activa el "Eco": se tira el dado de comando otra vez y se suman los resultados.</p>
+            
+            <div class="math-rule">Resultado del Dado Oculto > Resultado del Dado de Comando</div>
+            
+            <p>Para el Comando CURA o REVITALIA, si se activa el ECO, no suma sus resultados sino que convierte el hechizo con efecto AOE. Es decir que afecta a todo el grupo.</p>
+
+            <h3>BLOQUEO DE SUERTE</h3>
+            <p>El dado oculto no se lanza si la Suerte del enemigo es mayor que la del personaje.</p>
+        </main>
+
+        <aside class="img-box">
+            <div class="simulador-container">
+                <h3>SIMULADOR DE ECO</h3>
+                
+                <div class="superficie-mesa">
+                    <div class="dado-caja">
+                        <span class="dado-etiqueta">Comando</span>
+                        <div class="dado-wrapper">
+                            <div id="dado-comando" class="dado">?</div>
+                            <div id="sombra-comando" class="sombra-dado"></div>
+                        </div>
+                    </div>
+                    <div class="dado-caja">
+                        <span class="dado-etiqueta">Oculto</span>
+                        <div class="dado-wrapper">
+                            <div id="dado-oculto" class="dado">?</div>
+                            <div id="sombra-oculto" class="sombra-dado"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mensaje-eco" class="resultado-eco">¡Tira los dados!</div>
+                <button id="btn-tirar-dados" class="btn-tirar">LANZAR DADOS</button>
+
+                <audio id="audio-dados" src="sonidosdados.mp3"></audio>
+                <audio id="audio-triunfo" src="sonidotriunfo.mp3"></audio>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>Magiya Dice &copy; 2026 — Ficción inspirada en la persecución de brujas y la mitología griega.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnTirar = document.getElementById('btn-tirar-dados');
+            const dadoComando = document.getElementById('dado-comando');
+            const dadoOculto = document.getElementById('dado-oculto');
+            const sombraComando = document.getElementById('sombra-comando');
+            const sombraOculto = document.getElementById('sombra-oculto');
+            const mensajeEco = document.getElementById('mensaje-eco');
+            const audioDados = document.getElementById('audio-dados');
+            const audioTriunfo = document.getElementById('audio-triunfo');
+
+            btnTirar.addEventListener('click', function() {
+                audioDados.currentTime = 0; 
+                audioDados.play();
+
+                // Aplicar animaciones de salto al dado y a la sombra
+                dadoComando.classList.add('rodando');
+                dadoOculto.classList.add('rodando');
+                sombraComando.classList.add('rodando');
+                sombraOculto.classList.add('rodando');
+                
+                dadoComando.textContent = "…";
+                dadoOculto.textContent = "…";
+                mensajeEco.textContent = "Rodando...";
+                mensajeEco.style.color = "var(--color-texto-principal)";
+
+                btnTirar.disabled = true;
+
+                setTimeout(function() {
+                    // Frenar físicas
+                    dadoComando.classList.remove('rodando');
+                    dadoOculto.classList.remove('rodando');
+                    sombraComando.classList.remove('rodando');
+                    sombraOculto.classList.remove('rodando');
+
+                    const resComando = Math.floor(Math.random() * 6) + 1;
+                    const resOculto = Math.floor(Math.random() * 6) + 1;
+
+                    dadoComando.textContent = resComando;
+                    dadoOculto.textContent = resOculto;
+
+                    if (resOculto > resComando) {
+                        mensajeEco.textContent = "¡ECO ACTIVADO!";
+                        mensajeEco.style.color = "var(--color-rojo-retro)";
+                        
+                        setTimeout(() => {
+                            audioTriunfo.currentTime = 0;
+                            audioTriunfo.play();
+                        }, 200);
+
+                    } else {
+                        mensajeEco.textContent = "Sin efecto Eco.";
+                        mensajeEco.style.color = "var(--color-texto-principal)";
+                    }
+
+                    btnTirar.disabled = false;
+
+                }, 800);
+            });
+        });
+    </script>
+
+</body>
+</html>
